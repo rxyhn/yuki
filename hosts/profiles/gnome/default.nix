@@ -13,10 +13,12 @@
     ];
 
     systemPackages = with pkgs; [
-      qogir-icon-theme
-      gnome-extension-manager
-      nautilus-open-any-terminal
+      ffmpegthumbnailer
+      gnome.adwaita-icon-theme
+      gnome.dconf-editor
+      gnome.gnome-tweaks
       gnome.nautilus-python
+      nautilus-open-any-terminal
       wl-clipboard
     ];
 
@@ -62,16 +64,15 @@
     };
   };
 
+  services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
+
   programs.dconf.profiles = {
     gdm.databases = [
       {
         settings = {
-          "org/gnome/desktop/peripherals/touchpad" = {
-            tap-to-click = true;
-          };
-          "org/gnome/desktop/interface" = {
-            cursor-theme = "Qogir";
-          };
+          "org/gnome/mutter".experimental-features = ["scale-monitor-framebuffer"];
+          "org/gnome/desktop/peripherals/mouse".accel-profile = "flat";
+          "org/gnome/desktop/peripherals/touchpad".tap-to-click = true;
         };
       }
     ];
