@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./dconf.nix
+    ./extensions.nix
 
     ../../modules/dev
     ../../modules/config/gtk.nix
